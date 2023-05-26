@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { MyAuthcontext } from '../../../Routes/Provider/Authprovider';
 
 const Navber = () => {
+
+    const {user,Logout}=useContext(MyAuthcontext)
+
+    const handlerLogout=()=>{
+        Logout()
+    }
+
     const Navoptation =<>
-    <li>Home</li>
-    <li>Contact us</li>
+    <Link to="/"><li>Home</li></Link>
+    <Link to='/Manu'><button><li>Our Menu</li></button></Link>
+    <Link to='/order'><li>Our Shop</li></Link>
     <li>Dashboard</li>
-    <li>Our Menu</li>
-    <li>Our Shop</li>
-    <li>Sign Out</li>
+    <li>Contact us</li>
+    {
+        user ? <><button className='btn btn-outline btn-info btn-xs' onClick={handlerLogout}>Logout</button></>:<> <Link to={'/Login'}><li>Login</li></Link></>
+    }
     <img src="" alt="" />
     </>
     return (

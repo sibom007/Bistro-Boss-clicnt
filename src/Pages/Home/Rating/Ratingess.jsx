@@ -18,7 +18,6 @@ const Ratingess = () => {
             .then(data => setRatinges(data))
     }, [])
 
-
     return (
         <div>
             <section className='mt-5'>
@@ -27,7 +26,7 @@ const Ratingess = () => {
 
                 <Swiper navigation={true} modules={[Navigation]} className="mySwiper mb-5 mt-5">
                     {
-                        Ratinges.map(Ratinge => <SwiperSlide key={Ratinge.id}>
+                        Ratinges.map(Ratinge => <SwiperSlide key={Ratinge._id}>
 
                             <div className='flex flex-col items-center space-y-4 mt-5'>
                                 <Rating

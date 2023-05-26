@@ -1,13 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navber from "../../Pages/Sheard/Navber/Navber";
 import Footer from "../../Pages/Sheard/Footer/Footer";
 
 const Main = () => {
+    const location = useLocation();
+    const NoNavFooter = location.pathname.includes('Login') || location.pathname.includes('Signin')
     return (
         <div>
-            <Navber />
+            {NoNavFooter || <Navber />}
             <Outlet></Outlet>
-            <Footer />
+            {NoNavFooter || <Footer />}
         </div>
     );
 };
