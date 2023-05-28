@@ -15,7 +15,7 @@ const Login = () => {
     const { Login } = useContext(MyAuthcontext)
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/'
+    const froms = location.state?.from?.pathname || '/'
     // console.log(from);
 
     useEffect(() => {
@@ -32,7 +32,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from)
+                navigate(froms)
                 Swal.fire("Login", '', 'success')
                 // from.reset()            
             })

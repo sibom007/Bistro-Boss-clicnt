@@ -11,6 +11,7 @@ import Privetrout from "./Privetrout";
 
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/Order",
-       element:<Privetrout><Order></Order></Privetrout>
+       element:<Order></Order>
       },
       {
         path:'/Login',

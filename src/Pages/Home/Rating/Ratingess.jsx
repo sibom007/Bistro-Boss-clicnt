@@ -13,7 +13,7 @@ import { Rating } from '@smastrom/react-rating';
 const Ratingess = () => {
     const [Ratinges, setRatinges] = useState([])
     useEffect(() => {
-        fetch("Rating.json")
+        fetch("http://localhost:5000/rating")
             .then(res => res.json())
             .then(data => setRatinges(data))
     }, [])
