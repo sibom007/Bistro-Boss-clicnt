@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-
+import Swal from 'sweetalert2'
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MyAuthcontext } from '../../Routes/Provider/Authprovider';
 
 
@@ -9,23 +9,36 @@ import { MyAuthcontext } from '../../Routes/Provider/Authprovider';
 
 
 const Signup = () => {
-    const {createuser}=useContext(MyAuthcontext)
+    const { createuser,Updateprofil } = useContext(MyAuthcontext)
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const Navigate = useNavigate()
+    const froms = location.state?.from?.pathname || '/'
+
     const onSubmit = data => {
+        // Updateprofil(data.name,data.photoURL)
+        createuser(data.email, data.password)
+            .then(result => {
+                const saveUser = { name: data.name, email: data.email }
+                
+                fetch('http://localhost:5000/user', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': "application/json"
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        Swal.fire("Login", '', 'success')
+                    })
+                Swal.fire("Login", '', 'success')
+                // reset()  
+                Navigate(froms, { replace: true })
 
-        createuser(data.email,data.password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-            // Swal.fire("Login", '', 'success')
-            // reset()
-            // Navigate(from, { replace: true })
-
-        })
-        .catch(error => {
-            console.log(error)
-            // Swal.fire(error.message, ' ', 'error')
-        })
+            })
+            .catch(error => {
+                Swal.fire(error.message, ' ', 'error')
+            })
     };
     return (
         <div>
@@ -55,7 +68,7 @@ const Signup = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" {...register("password", { required: true, minLength: 6, maxLength: 20,pattern:/(?=.*[a-z])(?=.*[A-Z])/ })} placeholder="password" className="input input-bordered" />
+                                <input type="text" {...register("password", { required: true, minLength: 6, maxLength: 20, pattern: /(?=.*[a-z])(?=.*[A-Z])/ })} placeholder="password" className="input input-bordered" />
                                 {errors.password?.type === "required" && <span className='text-red-500'>This Password is required</span>}
                                 {errors.password?.type === "minLength" && <span className='text-red-500'>This Password Should be 6 caracter</span>}
                                 {errors.password?.type === "maxLength" && <span className='text-red-500'>This Password only 20  caracter</span>}

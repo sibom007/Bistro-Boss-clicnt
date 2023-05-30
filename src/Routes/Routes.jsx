@@ -8,6 +8,8 @@ import Order from "../Pages/Order/Order/Order";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
 import Privetrout from "./Privetrout";
+import Dashbord from "../Layout/Main/Dashbord";
+import Mycart from "../Pages/Deshbord/Mycart/Mycart";
 
 
 
@@ -39,6 +41,16 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path:'/dashbord',
+    element:<Privetrout><Dashbord /></Privetrout> ,
+    children:[
+      {
+        path:'mycart',
+        element:<Mycart />
+      }
+    ]
+  }
 ]);
 
 export default router;

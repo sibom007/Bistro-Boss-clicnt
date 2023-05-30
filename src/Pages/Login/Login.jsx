@@ -6,11 +6,12 @@ import { Helmet } from 'react-helmet-async';
 import { MyAuthcontext } from '../../Routes/Provider/Authprovider';
 import Swal from 'sweetalert2'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import SocialLogin from '../Sheard/SocialLogin/SocialLogin';
 
 
 
 const Login = () => {
-    
+
     const [disabled, setdisabled] = useState(true)
     const { Login } = useContext(MyAuthcontext)
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Login = () => {
                 console.log(user);
                 navigate(froms)
                 Swal.fire("Login", '', 'success')
-                // from.reset()            
+                from.reset()
             })
             .catch(error => {
                 console.log(error)
@@ -84,6 +85,7 @@ const Login = () => {
                                 <input className='bg-[#D1A054] btn hover:bg-[#D1A054]' disabled={disabled} type="submit" value="Login" />
                             </div>
                             <p>Have no Account <span className='text-blue-500'><Link to={'/Signin'}>Regester</Link></span></p>
+                            <SocialLogin />
                         </div>
                     </div>
                 </form>
