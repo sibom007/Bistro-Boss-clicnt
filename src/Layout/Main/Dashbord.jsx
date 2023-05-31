@@ -2,10 +2,12 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { FaHome, FaCalendar, FaWallet, FaStar, FaBookmark, FaShoppingCart, FaUtensils, FaUser, } from 'react-icons/fa';
 import usecard from '../../Hooks/usecard';
+import useAdmin from '../../Hooks/useAdmin';
+
 
 const Dashbord = () => {
     const [cart] = usecard()
-    const isadmin = true
+    const [isAdmin] = useAdmin()
     return (
         <div>
             <div className="drawer drawer-mobile">
@@ -20,12 +22,12 @@ const Dashbord = () => {
                         <h1 className="normal-case text-xl font-bold mb-10">BISTRO BOSS <br /> Restaurant</h1>
 
                         {
-                            isadmin ? <>
+                            isAdmin ? <>
                                 <li><NavLink to={'/dashbord/Admin'}> <FaHome /> Admin Home</NavLink></li>
                                 <li><NavLink to={'/dashbord/Additem'}><FaUtensils />  add items</NavLink></li>
                                 <li><NavLink to={'/dashbord/manageitems'}><FaWallet />manage items</NavLink></li>
                                 <li><NavLink to={'/dashbord/managebookings'}><FaBookmark /> Manage bookings  <div className="badge bg-zinc-200 text-black">+{cart?.length || 0}</div></NavLink></li>
-                                <li><NavLink to={'/Alluser'}> <FaUser /> all users</NavLink></li>
+                                <li><NavLink to={'/dashbord/Alluser'}> <FaUser /> all users</NavLink></li>
 
                             </>
                                 :
@@ -33,9 +35,10 @@ const Dashbord = () => {
                                     <li><NavLink to={'/'}> <FaHome /> User Home</NavLink></li>
                                     <li><NavLink to={'/'}><FaCalendar />  Reservation</NavLink></li>
                                     <li><NavLink to={'/'}><FaWallet />  Payment Ristory</NavLink></li>
-                                    <li><NavLink to={'/mycart'}><FaShoppingCart />  my cart  <div className="badge bg-zinc-200 text-black">+{cart?.length || 0}</div></NavLink></li>
+                                    <li><NavLink to={'/dashbord/mycart'}><FaShoppingCart />  my cart  <div className="badge bg-zinc-200 text-black">+{cart?.length || 0}</div></NavLink></li>
                                     <li><NavLink to={'/'}> <FaStar /> add review</NavLink></li>
                                     <li><NavLink to={'/'}><FaBookmark /> my booking</NavLink></li>
+                                    {/* <li><NavLink to={'/dashbord/Alluser'}> <FaUser /> all users</NavLink></li> */}
 
                                 </>
                         }

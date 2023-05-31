@@ -17,7 +17,7 @@ const Navber = () => {
         <Link to="/"><li>Home</li></Link>
         <Link to='/Manu'><button><li>Our Menu</li></button></Link>
         <Link to='/order'><li>Our Shop</li></Link>
-        <Link><li>
+        <Link to={'/dashbord/mycart'}><li>
             <button className="btn bg-[#89b5fa] hover:bg-[#89b5fa] gap-2">
                 <FaShoppingCart />
                 <div className="badge bg-zinc-200 text-black">+{cart ?.length || 0}</div>
