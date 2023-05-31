@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { FaHome, FaCalendar, FaWallet, FaStar, FaBookmark, FaShoppingCart, } from 'react-icons/fa';
+import { FaHome, FaCalendar, FaWallet, FaStar, FaBookmark, FaShoppingCart, FaUtensils, FaUser, } from 'react-icons/fa';
 import usecard from '../../Hooks/usecard';
 
 const Dashbord = () => {
     const [cart] = usecard()
+    const isadmin = true
     return (
         <div>
             <div className="drawer drawer-mobile">
@@ -17,17 +18,40 @@ const Dashbord = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 text-center text-base-content bg-[#D1A054]">
                         <h1 className="normal-case text-xl font-bold mb-10">BISTRO BOSS <br /> Restaurant</h1>
-                        <li><NavLink> <FaHome /> User Home</NavLink></li>
-                        <li><NavLink><FaCalendar />  Reservation</NavLink></li>
-                        <li><NavLink><FaWallet />  Payment Ristory</NavLink></li>
-                        <li><NavLink to={'/dashbord/mycart'}><FaShoppingCart />  my cart  <div className="badge bg-zinc-200 text-black">+{cart?.length || 0}</div></NavLink></li>
-                        <li><NavLink> <FaStar /> add review</NavLink></li>
-                        <li><NavLink><FaBookmark /> my booking</NavLink></li>
+
+                        {
+                            isadmin ? <>
+                                <li><NavLink to={'/dashbord/Admin'}> <FaHome /> Admin Home</NavLink></li>
+                                <li><NavLink to={'/dashbord/Additem'}><FaUtensils />  add items</NavLink></li>
+                                <li><NavLink to={'/dashbord/manageitems'}><FaWallet />manage items</NavLink></li>
+                                <li><NavLink to={'/dashbord/managebookings'}><FaBookmark /> Manage bookings  <div className="badge bg-zinc-200 text-black">+{cart?.length || 0}</div></NavLink></li>
+                                <li><NavLink to={'/Alluser'}> <FaUser /> all users</NavLink></li>
+
+                            </>
+                                :
+                                <>
+                                    <li><NavLink to={'/'}> <FaHome /> User Home</NavLink></li>
+                                    <li><NavLink to={'/'}><FaCalendar />  Reservation</NavLink></li>
+                                    <li><NavLink to={'/'}><FaWallet />  Payment Ristory</NavLink></li>
+                                    <li><NavLink to={'/mycart'}><FaShoppingCart />  my cart  <div className="badge bg-zinc-200 text-black">+{cart?.length || 0}</div></NavLink></li>
+                                    <li><NavLink to={'/'}> <FaStar /> add review</NavLink></li>
+                                    <li><NavLink to={'/'}><FaBookmark /> my booking</NavLink></li>
+
+                                </>
+                        }
+
+
+
+
+
                         <div className="divider"></div>
+
+
+
                         <li><NavLink to={'/'}><FaHome /> Home</NavLink></li>
                         <li><NavLink to={'/order'}>Manu</NavLink></li>
-                        <li><NavLink><FaBookmark />Shop</NavLink></li>
-                        <li><NavLink><FaBookmark />Contact</NavLink></li>
+                        <li><NavLink to={'/'}><FaBookmark />Shop</NavLink></li>
+                        <li><NavLink to={'/'}><FaBookmark />Contact</NavLink></li>
 
 
 

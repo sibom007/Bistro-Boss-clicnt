@@ -23,7 +23,7 @@ const Navber = () => {
                 <div className="badge bg-zinc-200 text-black">+{cart ?.length || 0}</div>
             </button>
         </li></Link>
-        <Link to={'/dashbord/mycart'}><li>Dashboard</li></Link>
+        <Link to={'/dashbord'}><li>Dashboard</li></Link>
         
         {
             user ? <><button className='btn btn-outline btn-info btn-xs' onClick={handlerLogout}>Logout</button></> : <> <Link to={'/Login'}><li>Login</li></Link></>

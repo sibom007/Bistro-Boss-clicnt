@@ -6,7 +6,9 @@ import Swal from 'sweetalert2'
 
 const Mycart = () => {
     const [cart, refetch] = usecard()
-    const total = cart.reduce((sum, item) => item.price + sum, 0)
+    console.log(cart);
+    const total = cart?.reduce((sum, item) => item.price + sum, 0)
+    
     const handlerdelete = item => {
 
         Swal.fire({

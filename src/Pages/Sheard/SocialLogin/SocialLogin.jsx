@@ -10,10 +10,10 @@ const SocialLogin = () => {
     const froms = location.state?.from?.pathname || '/'
     const handlerGooglelogin = () => {
         googlesignin()
-        .then(result =>{
-            navigate(froms)
-        })
-       
+            .then(() => {
+                navigate(froms, { replace: true })
+            })
+
 
     }
     return (
@@ -21,7 +21,7 @@ const SocialLogin = () => {
             <div className="divider"></div>
             <div className='text-center'>
                 <button onClick={handlerGooglelogin} className="btn btn-circle btn-outline bg-blue-300 hover:bg-blue-400 text-white">
-                     <FaGoogle />
+                    <FaGoogle />
                 </button>
             </div>
 

@@ -3,13 +3,14 @@ import Swal from 'sweetalert2'
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import { MyAuthcontext } from '../../Routes/Provider/Authprovider';
+import SocialLogin from '../Sheard/SocialLogin/SocialLogin';
 
 
 
 
 
 const Signup = () => {
-    const { createuser,Updateprofil } = useContext(MyAuthcontext)
+    const { createuser, Updateprofil } = useContext(MyAuthcontext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const Navigate = useNavigate()
     const froms = location.state?.from?.pathname || '/'
@@ -18,8 +19,8 @@ const Signup = () => {
         // Updateprofil(data.name,data.photoURL)
         createuser(data.email, data.password)
             .then(result => {
-                const saveUser = { name: data.name, email: data.email }
-                
+                const saveUser = { name: data.Name, email: data.email }
+                Updateprofil(data.Name, data.photo)
                 fetch('http://localhost:5000/user', {
                     method: 'POST',
                     headers: {
@@ -34,7 +35,6 @@ const Signup = () => {
                 Swal.fire("Login", '', 'success')
                 // reset()  
                 Navigate(froms, { replace: true })
-
             })
             .catch(error => {
                 Swal.fire(error.message, ' ', 'error')
@@ -55,6 +55,13 @@ const Signup = () => {
                                     <span className="label-text">Name</span>
                                 </label>
                                 <input type="text"  {...register("Name", { required: true })} placeholder="Name" className="input input-bordered" />
+                                {errors.Name && <span className='text-red-500'>This Name is required</span>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input type="text"  {...register("photo", { required: true })} placeholder="Photo url" className="input input-bordered" />
                                 {errors.Name && <span className='text-red-500'>This Name is required</span>}
                             </div>
                             <div className="form-control">
@@ -82,6 +89,7 @@ const Signup = () => {
                             </div>
                             <p>Allrady Have account <span className='text-blue-600'><Link to={"/Login"}>Login</Link></span></p>
                         </form >
+                        <SocialLogin />
                     </div>
                 </div>
             </div>
