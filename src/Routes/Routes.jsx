@@ -15,6 +15,8 @@ import Additems from "../Pages/Deshbord/Additems/Additems";
 import Adminprivetro from "./Adminprivetrouts";
 import Managesitems from "../Pages/Deshbord/Managesitem/Managesitems";
 import Pemant from "../Pages/Deshbord/Pemant/Pemant";
+import AdminUser from "../Pages/Deshbord/AdminUser/AdminUser";
+import UserHome from "../Pages/Deshbord/UserHome/UserHome";
 
 
 
@@ -50,6 +52,14 @@ const router = createBrowserRouter([
     path: '/dashbord',
     element: <Privetrout><Dashbord /></Privetrout>,
     children: [
+      {
+        path: 'UserHome',
+        element: <UserHome />
+      },
+      {
+        path: 'AdminHome',
+        element: <AdminUser />
+      },
       {
         path: 'mycart',
         element: <Mycart />

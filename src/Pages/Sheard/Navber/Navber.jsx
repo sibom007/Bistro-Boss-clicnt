@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { MyAuthcontext } from '../../../Routes/Provider/Authprovider';
 import usecard from '../../../Hooks/usecard';
+import useAdmin from '../../../Hooks/useAdmin';
 
 const Navber = () => {
 
     const { user, Logout } = useContext(MyAuthcontext)
-    const [cart] =usecard()
+    const [cart] = usecard()
+    const [isAdmin] = useAdmin()
 
     const handlerLogout = () => {
         Logout()
@@ -18,13 +20,20 @@ const Navber = () => {
         <Link to='/Manu'><button><li>Our Menu</li></button></Link>
         <Link to='/order'><li>Our Shop</li></Link>
         <Link to={'/dashbord/mycart'}><li>
+
+
+
             <button className="btn bg-[#89b5fa] hover:bg-[#89b5fa] gap-2">
                 <FaShoppingCart />
-                <div className="badge bg-zinc-200 text-black">+{cart ?.length || 0}</div>
+                <div className="badge bg-zinc-200 text-black">+{cart?.length || 0}</div>
             </button>
         </li></Link>
-        <Link to={'/dashbord'}><li>Dashboard</li></Link>
-        
+
+        {
+            isAdmin ? <Link to={'/dashbord/AdminHome'}><li>Dashboard</li></Link> : <Link to={'/dashbord/UserHome'}><li>Dashboard</li></Link>
+        }
+
+
         {
             user ? <><button className='btn btn-outline btn-info btn-xs' onClick={handlerLogout}>Logout</button></> : <> <Link to={'/Login'}><li>Login</li></Link></>
         }
