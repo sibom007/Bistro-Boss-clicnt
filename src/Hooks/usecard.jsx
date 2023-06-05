@@ -20,7 +20,7 @@ const usecard = () => {
         enabled: !loading && !!user?.email,
         queryFn: async () => {
             const res = await axiosSecure(`/carts?email=${user?.email}`)
-            console.log(res);
+            
             return res.data;
         },
 

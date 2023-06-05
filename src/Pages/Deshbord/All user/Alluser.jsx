@@ -9,8 +9,8 @@ const Alluser = () => {
 
     const [axiosSecure] = useAxiosSecure();
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        // const res = await axiosSecure.get('/users')
-        // return res.data;
+        const res = await axiosSecure.get('/users')
+        return res.data;
     })
 
     const handlerdadmin = user =>{

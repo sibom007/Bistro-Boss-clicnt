@@ -8,11 +8,13 @@ import useAdmin from '../../Hooks/useAdmin';
 const Dashbord = () => {
     const [cart] = usecard()
     const [isAdmin] = useAdmin()
+    // const isAdmin =  true
+   
     return (
         <div>
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content ">
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
                     <Outlet />
                 </div>
@@ -33,13 +35,13 @@ const Dashbord = () => {
                                 :
                                 <>
                                     <li><NavLink to={'/'}> <FaHome /> User Home</NavLink></li>
-                                    <li><NavLink to={'/'}><FaCalendar />  Reservation</NavLink></li>
+                                    <li><NavLink to={'/dashbord/pament'}><FaCalendar />  Reservation</NavLink></li>
                                     <li><NavLink to={'/'}><FaWallet />  Payment Ristory</NavLink></li>
                                     <li><NavLink to={'/dashbord/mycart'}><FaShoppingCart />  my cart  <div className="badge bg-zinc-200 text-black">+{cart?.length || 0}</div></NavLink></li>
                                     <li><NavLink to={'/'}> <FaStar /> add review</NavLink></li>
                                     <li><NavLink to={'/'}><FaBookmark /> my booking</NavLink></li>
-                                    {/* <li><NavLink to={'/dashbord/Alluser'}> <FaUser /> all users</NavLink></li> */}
-
+                      
+                                   
                                 </>
                         }
 
@@ -55,7 +57,9 @@ const Dashbord = () => {
                         <li><NavLink to={'/order'}>Manu</NavLink></li>
                         <li><NavLink to={'/'}><FaBookmark />Shop</NavLink></li>
                         <li><NavLink to={'/'}><FaBookmark />Contact</NavLink></li>
+                        
 
+                       
 
 
                     </ul>
